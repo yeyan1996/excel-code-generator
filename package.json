@@ -1,7 +1,7 @@
 {
   "name": "excel",
   "version": "1.0.0",
-  "description": "",
+  "description": "node.js读取excel文件的指定单元格并填充到.vue文件中的指定字段",
   "main": "excel.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -19,5 +19,9 @@
   "bugs": {
     "url": "https://github.com/yeyan1996/excel/issues"
   },
-  "homepage": "https://github.com/yeyan1996/excel#readme"
+  "homepage": "https://github.com/yeyan1996/excel#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "node-xlsx": "^0.12.1"
+  }
 }

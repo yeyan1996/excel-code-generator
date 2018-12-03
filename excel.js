@@ -1,7 +1,8 @@
 const fs = require("fs");
 const xlsx = require("node-xlsx")
-
-const workSheetsFromBuffer = xlsx.parse(fs.readFileSync(`C:/Users/007/Desktop/excel.xlsm`));
+const config = require('./config')
+console.log(config)
+const workSheetsFromBuffer = xlsx.parse(fs.readFileSync(config.path));
 
 
 //下标3为第几张sheet
