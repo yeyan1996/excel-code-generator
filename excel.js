@@ -1,13 +1,12 @@
 const fs = require("fs");
 const xlsx = require("node-xlsx")
 const config = require('./config')
-console.log(config)
-const workSheetsFromBuffer = xlsx.parse(fs.readFileSync(config.path));
-
+let workSheetsFromBuffer = xlsx.parse(fs.readFileSync(config.path));
 
 //下标3为第几张sheet
-let {name, data} = workSheetsFromBuffer[3];
+let {data} = workSheetsFromBuffer[config.sheet];
 
+console.log(data)
 function sliceByColumn(options) {
     let slicedObject = {}
 
@@ -31,25 +30,12 @@ function sliceByColumn(options) {
 }
 
 
-let options = [
-    {
-        name:"prop",
-        line: [3, 4, 7],
-        cameCase: true
-    },
-    {
-        name:"label",
-        line:[4,4,7],
-    }
-]
-let colObj = sliceByColumn(options)
+let colObj = sliceByColumn(config.options)
 
 console.log('截取列表',colObj)
 
-fs.readFile('./tmp_html.vue', 'utf-8', (err, _data) => {
-    if (err) {
-        console.log(err)
-    }
+fs.readFile(config.readFilePath, 'utf-8', (err, _data) => {
+    if (!!err) console.log(err)
 
     let arr=_data.match(/([\\s\\S]*?)(<el-table-column[^>]*>)/g);//arr匹配到的是标签的前半部分
     let sourceArr = JSON.parse(JSON.stringify(arr));// 深拷贝arr
@@ -71,7 +57,7 @@ fs.readFile('./tmp_html.vue', 'utf-8', (err, _data) => {
     }
 
     //写入一个新的文件里，当然也可以覆盖原来的文件
-    fs.writeFile('./tmp_html.vue',_data, (err) => {
+    fs.writeFile(config.writeFilePath,_data, (err) => {
         if (err) throw err;
         console.log('The file has been saved!');
     });
