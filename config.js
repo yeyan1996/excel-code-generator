@@ -1,6 +1,6 @@
 module.exports = {
-    // path:'C:/Users/007/Desktop/excel.xlsm',
-    path: 'C:/Users/zhl/Desktop/excel.xlsx',
+    path:'C:/Users/007/Desktop/excel.xlsm',
+    // path: 'C:/Users/zhl/Desktop/excel.xlsx',
     sheet: 3,
     options: [
         {
@@ -13,6 +13,6 @@ module.exports = {
             line: [4, 4, 7],
         }
     ],
-    readFilePath: './tmp_html.vue',
-    writeFilePath: './tmp_html.vue',
+    readFilePath: 'E:/HospitalManagement/dp2plus/tmp_html.vue',
+    writeFilePath: 'E:/HospitalManagement/dp2plus/tmp_html.vue',
 }

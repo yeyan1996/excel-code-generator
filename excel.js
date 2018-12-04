@@ -6,7 +6,6 @@ let workSheetsFromBuffer = xlsx.parse(fs.readFileSync(config.path));
 //下标3为第几张sheet
 let {data} = workSheetsFromBuffer[config.sheet];
 
-console.log(data)
 function sliceByColumn(options) {
     let slicedObject = {}
 
@@ -32,32 +31,30 @@ function sliceByColumn(options) {
 
 let colObj = sliceByColumn(config.options)
 
-console.log('截取列表',colObj)
+console.log('截取列表', colObj)
 
 fs.readFile(config.readFilePath, 'utf-8', (err, _data) => {
     if (!!err) console.log(err)
 
-    let arr=_data.match(/([\\s\\S]*?)(<el-table-column[^>]*>)/g);//arr匹配到的是标签的前半部分
+    let arr = _data.match(/([\\s\S]*?)(<el-table[^>]*>)/g);//arr匹配到的是标签的前半部分
     let sourceArr = JSON.parse(JSON.stringify(arr));// 深拷贝arr
-
+    console.log(arr)
+    let str = ""
     //处理arr每一项的v-model
-    for (let i = 0; i < arr.length; i++) {
-        arr[i] = arr[i].replace(/prop="\w+"/g,`prop="${colObj.prop[i]}"`)
-        arr[i] = arr[i].replace(/label="([\u4e00-\u9fa5]|\w)+"/g, `label="${colObj.label[i]}"`)
+    for (let i = 0; i < colObj.label.length; i++) {
+        str += `\n <el-table-column width="120" prop="${colObj.prop[i]}" label="${colObj.label[i]}"></el-table-column> \n`
     }
+    
+    ////从各个匹配的位置替换原来标签
+    let openTagStart = _data.indexOf(sourceArr[0]);
+    let openTagLen = sourceArr[0].length
+    let openTagEnd = openTagStart + openTagLen;
+    console.log(_data.substring(openTagEnd))
+    _data = _data.substring(0, openTagEnd) + str + _data.substring(openTagEnd);
 
-    let index = 0;//储存上一次的end位置
-    //从各个匹配的位置替换原来标签
-    for (let i = 0; i < sourceArr.length; i++) {
-        let start=_data.indexOf(sourceArr[i],index);
-        let len=sourceArr[i].length
-        let end=start+len;
-        _data=_data.substring(0,start-1)+arr[i]+_data.substring(end,_data.length);
-        index=end;
-    }
 
     //写入一个新的文件里，当然也可以覆盖原来的文件
-    fs.writeFile(config.writeFilePath,_data, (err) => {
+    fs.writeFile(config.writeFilePath, _data, (err) => {
         if (err) throw err;
         console.log('The file has been saved!');
     });
