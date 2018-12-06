@@ -1,18 +1,18 @@
 module.exports = {
     path:'C:/Users/007/Desktop/excel.xlsm',
     // path: 'C:/Users/zhl/Desktop/excel.xlsx',
-    sheet: 3,
+    sheet: 7,
     options: [
         {
             name: "prop",
-            line: [3, 4, 7],
+            line: [3, 4, 15],
             cameCase: true
         },
         {
             name: "label",
-            line: [4, 4, 7],
+            line: [4, 4, 15],
         }
     ],
-    readFilePath: 'E:/HospitalManagement/dp2plus/tmp_html.vue',
-    writeFilePath: 'E:/HospitalManagement/dp2plus/tmp_html.vue',
+    readFilePath: 'E:/HospitalManagement/dp2plus/src/views/mapSearch/detail.vue',
+    writeFilePath: 'E:/HospitalManagement/dp2plus/src/views/mapSearch/detail.vue'
 }
