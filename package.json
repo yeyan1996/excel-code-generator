@@ -22,6 +22,7 @@
   "homepage": "https://github.com/yeyan1996/excel#readme",
   "dependencies": {},
   "devDependencies": {
-    "node-xlsx": "^0.12.1"
+    "bluebird": "^3.5.3",
+    "node-xlsx": "^0.12.1",
   }
 }
