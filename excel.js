@@ -92,8 +92,8 @@ console.log(colObj)
 
 readFile()
     .then(readData => {
-        let replacedCode = replaceFormItem(readData, colObj)
-        // writeFile(replacedCode)
+        let replacedCode = replaceCode(readData, colObj)
+        writeFile(replacedCode)
     })
     .catch(err => console.log(err))
 
