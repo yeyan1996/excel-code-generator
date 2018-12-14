@@ -5,6 +5,7 @@ const config = require('./config')
 const sliceByColumn = require('./sliceByColumn')
 const replaceFormItem = require('./replaceFormItem')
 const generatorTableColumn = require('./generatorTableColumn')
+const generatorColumnsData = require('./generatorColumnsData')
 
 let workSheetsFromBuffer = xlsx.parse(fs.readFileSync(config.path));
 //第几张sheet
@@ -22,12 +23,15 @@ async function writeFile(writeData) {
 }
 
 let colObj = sliceByColumn(config.options, data)
-
 console.log(colObj)
+
+
+
 
 readFile()
     .then(readData => {
-        let replacedCode = generatorTableColumn(readData, colObj)
+        // let replacedCode = generatorTableColumn(readData, colObj)
+        let replacedCode = generatorColumnsData(readData, colObj)
         writeFile(replacedCode)
     })
     .catch(err => console.log(err))
