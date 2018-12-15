@@ -4,7 +4,10 @@
   "description": "node.js读取excel文件的指定单元格并填充到.vue文件中的指定字段",
   "main": "excel.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tableColumn":"node excel.js generateTableColumn",
+    "columns":"node excel.js generateColumns",
+    "formItem":"node excel.js replaceFormItem"
   },
   "repository": {
     "type": "git",
@@ -23,6 +26,6 @@
   "dependencies": {},
   "devDependencies": {
     "bluebird": "^3.5.3",
-    "node-xlsx": "^0.12.1",
+    "node-xlsx": "^0.12.1"
   }
 }
