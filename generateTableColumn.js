@@ -4,7 +4,7 @@ module.exports = function generatorTableColumn(initCode, excelObj) {
     let sourceArr = JSON.parse(JSON.stringify(arr));// 深拷贝arr
     let str = ""
     for (let i = 0; i < excelObj.label.length; i++) {
-        str += `\n 
+        str += `
                 <el-table-column
                  width="160"
                  prop="${excelObj.prop[i]}" 

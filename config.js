@@ -13,6 +13,6 @@ module.exports = {
             line: [4, 4, 15],
         }
     ],
-    readFilePath: 'E:/HospitalManagement/dp2plus/tmp_html.vue',
-    writeFilePath: 'E:/HospitalManagement/dp2plus/tmp_html.vue'
+    readFilePath: 'E:/HospitalManagement/dp2plus/columns.ts',
+    writeFilePath: 'E:/HospitalManagement/dp2plus/columns.ts'
 }

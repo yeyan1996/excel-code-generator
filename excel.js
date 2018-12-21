@@ -4,9 +4,10 @@ const xlsx = require("node-xlsx")
 const config = require('./config')
 const sliceByColumn = require('./sliceByColumn')
 const replaceFormItem = require('./replaceFormItem')
-const generatorTableColumn = require('./generateTableColumn')
-const generatorColumnsData = require('./generateColumnsData')
-console.log(process.argv[2])
+const generateTableColumn = require('./generateTableColumn')
+const generateColumnsData = require('./generateColumnsData')
+const generateColumns = require('./generateColumns')
+
 let workSheetsFromBuffer = xlsx.parse(fs.readFileSync(config.path));
 //第几张sheet
 let {data} = workSheetsFromBuffer[config.sheet - 1];
@@ -31,16 +32,19 @@ readFile()
         let replacedCode;
         switch (process.argv[2]) {
             case 'generateTableColumn':
-                replacedCode = generatorTableColumn(readData, colObj)
+                replacedCode = generateTableColumn(readData, colObj)
                 break;
             case 'generateColumnsData':
-                replacedCode = generatorColumnsData(readData, colObj)
+                replacedCode = generateColumnsData(readData, colObj)
                 break;
             case 'replaceFormItem':
                 replacedCode = replaceFormItem(readData, colObj)
                 break;
+            case 'generateColumns':
+                replacedCode = generateColumns(readData,colObj)
+                break;
             default:
-                replacedCode = generatorColumnsData(readData, colObj)
+                replacedCode = generateColumns(readData, colObj)
         }
         writeFile(replacedCode)
     })
