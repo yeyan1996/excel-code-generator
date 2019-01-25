@@ -5,7 +5,6 @@ const config = require('./config')
 const sliceByColumn = require('./sliceByColumn')
 const replaceFormItem = require('./replaceFormItem')
 const generateTableColumn = require('./generateTableColumn')
-const generateColumnsData = require('./generateColumnsData')
 const generateColumns = require('./generateColumns')
 
 let workSheetsFromBuffer = xlsx.parse(fs.readFileSync(config.path));
@@ -33,9 +32,6 @@ readFile()
         switch (process.argv[2]) {
             case 'generateTableColumn':
                 replacedCode = generateTableColumn(readData, colObj)
-                break;
-            case 'generateColumnsData':
-                replacedCode = generateColumnsData(readData, colObj)
                 break;
             case 'replaceFormItem':
                 replacedCode = replaceFormItem(readData, colObj)
