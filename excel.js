@@ -18,7 +18,8 @@ async function readFile() {
 }
 
 async function writeFile(writeData) {
-    await fs.writeFileAsync(config.writeFilePath, writeData)
+    let writeFilePath = config.writeFilePath ? config.writeFilePath : config.readFilePath
+    await fs.writeFileAsync(writeFilePath, writeData)
     console.log('write success!')
 }
 
@@ -37,7 +38,7 @@ readFile()
                 replacedCode = replaceFormItem(readData, colObj)
                 break;
             case 'generateColumns':
-                replacedCode = generateColumns(readData,colObj)
+                replacedCode = generateColumns(readData, colObj)
                 break;
             default:
                 replacedCode = generateColumns(readData, colObj)

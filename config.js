@@ -1,22 +1,20 @@
 module.exports = {
-    path:'C:/Users/007/Desktop/excel.xlsm',
-    // path: 'C:/Users/zhl/Desktop/excel.xlsx',
-    sheet: 6,
+    path:'C:/Users/007/Desktop/excel.xlsx',
+    sheet: 4,
     options: [
         {
             name: "prop",
-            //第1个参数为第x列
+            //第1个参数为第x列(excel表格的列数的英文字母)
             //第2个参数为第x行
             //第3个参数为提取到x列(以excel的顶部为第一列)
-            line: [3, 4, 56],
+            line: ["d", 24, 37],
             // 是否需要转成驼峰
             cameCase: true
         },
         {
             name: "label",
-            line: [4, 4, 56],
+            line: ["c", 24, 37],
         }
     ],
-    readFilePath: 'E:/HospitalManagement/dp2plus/src/views/hospCatalogSearch/detailColumns.ts',
-    writeFilePath: 'E:/HospitalManagement/dp2plus/src/views/hospCatalogSearch/detailColumns.ts'
+    readFilePath: 'E:/HospitalManagement/dp2plus/src/views/payReview/columns.ts',
 }
