@@ -23,8 +23,7 @@
     "url": "https://github.com/yeyan1996/excel/issues"
   },
   "homepage": "https://github.com/yeyan1996/excel#readme",
-  "dependencies": {},
-  "devDependencies": {
+  "dependencies": {
     "bluebird": "^3.5.3",
     "node-xlsx": "^0.12.1"
   }

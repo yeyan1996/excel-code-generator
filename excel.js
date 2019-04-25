@@ -7,7 +7,9 @@ const replaceFormItem = require('./replaceFormItem')
 const generateTableColumn = require('./generateTableColumn')
 const generateColumns = require('./generateColumns')
 
+//fs.readFileSync(config.path)返回一个二进制Buffer
 let workSheetsFromBuffer = xlsx.parse(fs.readFileSync(config.path));
+
 //第几张sheet
 let {data} = workSheetsFromBuffer[config.sheet - 1];
 
