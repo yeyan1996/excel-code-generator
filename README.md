@@ -32,8 +32,7 @@ git clone git@github.com:yeyan1996/excel-code-generator.git
 
 
 ## Usage
-```
-npm run start
-```
+1. 配置 src/config.ts
+2. 运行 `npm run start`
 
-修改 src 内的 config.ts 即可
+
