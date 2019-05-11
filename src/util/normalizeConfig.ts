@@ -1,6 +1,8 @@
 import * as fs from "fs";
 import { Config, NormalizedConfig, TargetPath } from "../interface";
 
+const defaultTagRE = /\{\{((?:.|\r?\n)+?)\}\}/g;
+
 function normalizeExcelPath(excelPath: string): string {
   const extList: string[] = ["xlsx", "xlxm", "xls"];
   for (let i = 0; i < extList.length; i++) {
@@ -26,9 +28,14 @@ function normalizeTargetPath(targetPath: string): TargetPath {
   return res;
 }
 
+function normalizeTemplate(template: string): string {
+  return template.replace(defaultTagRE, ($0, $1): string => `{{${$1}}`);
+}
+
 export function normalizeConfig(config: Config): NormalizedConfig {
   let normalizedConfig: any = config;
   normalizedConfig.excelPath = normalizeExcelPath(config.excelPath);
+  normalizedConfig.template = normalizeTemplate(config.template);
   if (typeof config.targetPath === "string") {
     normalizedConfig.targetPath = normalizeTargetPath(config.targetPath);
   }

@@ -5,14 +5,16 @@ import { compose } from "./util/compose";
 import { normalizeConfig } from "./util/normalizeConfig";
 import { sliceByColumn } from "./sliceByColumn";
 import { generateFromTemplate } from "./generateFromTemplate";
-import { NormalizedConfig } from "./interface";
+import { NormalizedConfig, ExcelObj } from "./interface";
 
 let normalizedConfig: NormalizedConfig = normalizeConfig(config);
-let generateBuffer = compose(
+let generateBuffer: Function = compose(
   xlsx.parse,
   fs.readFileSync
 );
-let workSheetsFromBuffer = generateBuffer(normalizedConfig.excelPath); //返回一个二进制Buffer
+let workSheetsFromBuffer: { name: string; data: any[] }[] = generateBuffer(
+  normalizedConfig.excelPath
+);
 let { data } = workSheetsFromBuffer[normalizedConfig.sheet - 1]; //第几张sheet
 
 function readFile(): string {
@@ -29,8 +31,7 @@ function writeFile(writeData: string): void {
   console.log("write success!");
 }
 
-let colObj = sliceByColumn(normalizedConfig.options, data);
-console.log(colObj);
+let colObj: ExcelObj = sliceByColumn(normalizedConfig.options, data);
 
 function init(): void {
   let readData: string = readFile();

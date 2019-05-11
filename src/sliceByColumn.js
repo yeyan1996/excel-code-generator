@@ -13,13 +13,6 @@ function sliceByColumn(options, data) {
             var index = map.findIndex(function (item) { return item === option.line[0].toLowerCase(); });
             arr.push(rowArr[index]);
         });
-        // if (option.cameCase) {
-        //     slicedItem = slicedItem.map(item => {
-        //         return item.toLowerCase().replace(/_(\w)/g, function (match) {
-        //             return match.slice(1, 2).toUpperCase();
-        //         })
-        //     })
-        // }
         var posArr = option.line[1].split("-");
         var startPos = Number(posArr[0]) - 1;
         var endPos = Number(posArr[1]);

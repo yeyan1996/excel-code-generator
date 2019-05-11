@@ -8,6 +8,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var fs = __importStar(require("fs"));
+var defaultTagRE = /\{\{((?:.|\r?\n)+?)\}\}/g;
 function normalizeExcelPath(excelPath) {
     var extList = ["xlsx", "xlxm", "xls"];
     for (var i = 0; i < extList.length; i++) {
@@ -32,9 +33,13 @@ function normalizeTargetPath(targetPath) {
     res.readPath = res.writePath = targetPath;
     return res;
 }
+function normalizeTemplate(template) {
+    return template.replace(defaultTagRE, function ($0, $1) { return "{{" + $1 + "}"; });
+}
 function normalizeConfig(config) {
     var normalizedConfig = config;
     normalizedConfig.excelPath = normalizeExcelPath(config.excelPath);
+    normalizedConfig.template = normalizeTemplate(config.template);
     if (typeof config.targetPath === "string") {
         normalizedConfig.targetPath = normalizeTargetPath(config.targetPath);
     }

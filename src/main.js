@@ -16,7 +16,7 @@ var sliceByColumn_1 = require("./sliceByColumn");
 var generateFromTemplate_1 = require("./generateFromTemplate");
 var normalizedConfig = normalizeConfig_1.normalizeConfig(config_1.config);
 var generateBuffer = compose_1.compose(xlsx.parse, fs.readFileSync);
-var workSheetsFromBuffer = generateBuffer(normalizedConfig.excelPath); //返回一个二进制Buffer
+var workSheetsFromBuffer = generateBuffer(normalizedConfig.excelPath);
 var data = workSheetsFromBuffer[normalizedConfig.sheet - 1].data; //第几张sheet
 function readFile() {
     var readData = fs.readFileSync(normalizedConfig.targetPath.readPath, "utf-8");
@@ -28,7 +28,6 @@ function writeFile(writeData) {
     console.log("write success!");
 }
 var colObj = sliceByColumn_1.sliceByColumn(normalizedConfig.options, data);
-console.log(colObj);
 function init() {
     var readData = readFile();
     var replacedCode = generateFromTemplate_1.generateFromTemplate(readData, colObj, normalizedConfig);

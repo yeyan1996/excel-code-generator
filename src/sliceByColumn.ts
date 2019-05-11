@@ -21,13 +21,6 @@ export function sliceByColumn(options: Option[], data: any[][]): ExcelObj {
           arr.push(rowArr[index]);
         }
       );
-      // if (option.cameCase) {
-      //     slicedItem = slicedItem.map(item => {
-      //         return item.toLowerCase().replace(/_(\w)/g, function (match) {
-      //             return match.slice(1, 2).toUpperCase();
-      //         })
-      //     })
-      // }
       let posArr: string[] = option.line[1].split("-");
       let startPos: number = Number(posArr[0]) - 1;
       let endPos = Number(posArr[1]);
