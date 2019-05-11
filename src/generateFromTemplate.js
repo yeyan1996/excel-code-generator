@@ -17,9 +17,14 @@ function generateFromTemplate(initCode, excelObj, config) {
     }
     var _loop_1 = function (i) {
         str += config.template.replace(defaultTagRE, function ($0, $1) {
+            var option = config.options.find(function (option) { return option.as === $1; });
+            if (!option) {
+                console.error("模版的插值表达式和 as 无法关联");
+                process.exitCode = 1;
+            }
             if (excelObj[$1][i] === undefined)
                 return "";
-            var shouldCamelCase = !!config.options[$1].camelCase;
+            var shouldCamelCase = option.camelCase;
             if (shouldCamelCase)
                 excelObj[$1][i] = cameCase_1.camelCase(excelObj[$1][i]);
             return "'" + excelObj[$1][i] + "'";

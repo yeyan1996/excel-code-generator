@@ -29,7 +29,7 @@ function normalizeTargetPath(targetPath: string): TargetPath {
 }
 
 function normalizeTemplate(template: string): string {
-  return template.replace(defaultTagRE, ($0, $1): string => `{{${$1}}`);
+  return template.replace(defaultTagRE, ($0, $1): string => `{{${$1.trim()}}}`);
 }
 
 export function normalizeConfig(config: Config): NormalizedConfig {

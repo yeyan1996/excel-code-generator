@@ -34,7 +34,7 @@ function normalizeTargetPath(targetPath) {
     return res;
 }
 function normalizeTemplate(template) {
-    return template.replace(defaultTagRE, function ($0, $1) { return "{{" + $1 + "}"; });
+    return template.replace(defaultTagRE, function ($0, $1) { return "{{" + $1.trim() + "}}"; });
 }
 function normalizeConfig(config) {
     var normalizedConfig = config;

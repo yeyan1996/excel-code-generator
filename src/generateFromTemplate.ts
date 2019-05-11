@@ -20,12 +20,21 @@ export function generateFromTemplate(
     console.error("没有从EXCEL中找到相应字段");
     process.exitCode = 1;
   }
+
   for (let i = 0; i < excelObj[keyList[0]].length; i++) {
     str += config.template.replace(
       defaultTagRE,
       ($0, $1): string => {
+        let option: any = config.options.find(
+          (option): boolean => option.as === $1
+        );
+        if (!option) {
+          console.error("模版的插值表达式和 as 无法关联");
+          process.exitCode = 1;
+        }
+
         if (excelObj[$1][i] === undefined) return "";
-        let shouldCamelCase = !!config.options[$1].camelCase;
+        let shouldCamelCase = option.camelCase;
         if (shouldCamelCase) excelObj[$1][i] = camelCase(excelObj[$1][i]);
         return `'${excelObj[$1][i]}'`;
       }
