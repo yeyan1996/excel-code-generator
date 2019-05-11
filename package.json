@@ -1,17 +1,17 @@
 {
-  "name": "excel",
+  "name": "excel-code-generator",
   "version": "1.0.0",
   "description": "node.js读取excel文件的指定单元格并填充到.vue文件中的指定字段",
-  "main": "excel.js",
+  "main": "src/main.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "tableColumn":"node excel.js generateTableColumn",
-    "columns":"node excel.js generateColumns",
-    "formItem":"node excel.js replaceFormItem"
+    "start": "node src/main.js",
+    "eslint": "eslint src --ext .ts --fix",
+    "debugger": "node --inspect-brk src/main.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yeyan1996/excel.git"
+    "url": "git+https://github.com/yeyan1996/excel-code-generator.git"
   },
   "keywords": [
     "excel",
@@ -20,11 +20,19 @@
   "author": "yeyan1996",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/yeyan1996/excel/issues"
+    "url": "https://github.com/yeyan1996/excel-code-generator/issues"
   },
-  "homepage": "https://github.com/yeyan1996/excel#readme",
-  "dependencies": {
-    "bluebird": "^3.5.3",
-    "node-xlsx": "^0.12.1"
+  "homepage": "https://github.com/yeyan1996/excel-code-generator#readme",
+  "devDependencies": {
+    "@types/node": "^12.0.0",
+    "@types/node-xlsx": "^0.12.1",
+    "@typescript-eslint/eslint-plugin": "^1.8.0",
+    "@typescript-eslint/parser": "^1.8.0",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.2.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "node-xlsx": "^0.12.1",
+    "prettier": "^1.17.0",
+    "typescript": "^3.4.5"
   }
 }
