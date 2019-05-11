@@ -19,12 +19,12 @@ var generateBuffer = compose_1.compose(xlsx.parse, fs.readFileSync);
 var workSheetsFromBuffer = generateBuffer(normalizedConfig.excelPath);
 var data = workSheetsFromBuffer[normalizedConfig.sheet - 1].data; //第几张sheet
 function readFile() {
-    var readData = fs.readFileSync(normalizedConfig.targetPath.readPath, "utf-8");
+    var readData = fs.readFileSync(normalizedConfig.targetPath, "utf-8");
     console.log("read success!");
     return readData;
 }
 function writeFile(writeData) {
-    fs.writeFileSync(normalizedConfig.targetPath.writePath, writeData);
+    fs.writeFileSync(normalizedConfig.targetPath, writeData);
     console.log("write success!");
 }
 var colObj = sliceByColumn_1.sliceByColumn(normalizedConfig.options, data);

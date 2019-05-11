@@ -5,9 +5,9 @@ import { compose } from "./util/compose";
 import { normalizeConfig } from "./util/normalizeConfig";
 import { sliceByColumn } from "./sliceByColumn";
 import { generateFromTemplate } from "./generateFromTemplate";
-import { NormalizedConfig, ExcelObj } from "./interface";
+import { ExcelObj, Config } from "./interface";
 
-let normalizedConfig: NormalizedConfig = normalizeConfig(config);
+let normalizedConfig: Config = normalizeConfig(config);
 let generateBuffer: Function = compose(
   xlsx.parse,
   fs.readFileSync
@@ -18,16 +18,13 @@ let workSheetsFromBuffer: { name: string; data: any[] }[] = generateBuffer(
 let { data } = workSheetsFromBuffer[normalizedConfig.sheet - 1]; //第几张sheet
 
 function readFile(): string {
-  let readData: string = fs.readFileSync(
-    normalizedConfig.targetPath.readPath,
-    "utf-8"
-  );
+  let readData: string = fs.readFileSync(normalizedConfig.targetPath, "utf-8");
   console.log("read success!");
   return readData;
 }
 
 function writeFile(writeData: string): void {
-  fs.writeFileSync(normalizedConfig.targetPath.writePath, writeData);
+  fs.writeFileSync(normalizedConfig.targetPath, writeData);
   console.log("write success!");
 }
 

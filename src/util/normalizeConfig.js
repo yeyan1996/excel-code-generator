@@ -25,14 +25,6 @@ function normalizeExcelPath(excelPath) {
     }
     return excelPath;
 }
-function normalizeTargetPath(targetPath) {
-    var res = {
-        readPath: "",
-        writePath: ""
-    };
-    res.readPath = res.writePath = targetPath;
-    return res;
-}
 function normalizeTemplate(template) {
     return template.replace(defaultTagRE, function ($0, $1) { return "{{" + $1.trim() + "}}"; });
 }
@@ -40,9 +32,6 @@ function normalizeConfig(config) {
     var normalizedConfig = config;
     normalizedConfig.excelPath = normalizeExcelPath(config.excelPath);
     normalizedConfig.template = normalizeTemplate(config.template);
-    if (typeof config.targetPath === "string") {
-        normalizedConfig.targetPath = normalizeTargetPath(config.targetPath);
-    }
     return normalizedConfig;
 }
 exports.normalizeConfig = normalizeConfig;

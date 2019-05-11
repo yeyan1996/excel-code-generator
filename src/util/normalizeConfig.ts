@@ -1,5 +1,5 @@
 import * as fs from "fs";
-import { Config, NormalizedConfig, TargetPath } from "../interface";
+import { Config } from "../interface";
 
 const defaultTagRE = /\{\{((?:.|\r?\n)+?)\}\}/g;
 
@@ -19,25 +19,13 @@ function normalizeExcelPath(excelPath: string): string {
   return excelPath;
 }
 
-function normalizeTargetPath(targetPath: string): TargetPath {
-  let res: TargetPath = {
-    readPath: "",
-    writePath: ""
-  };
-  res.readPath = res.writePath = targetPath;
-  return res;
-}
-
 function normalizeTemplate(template: string): string {
   return template.replace(defaultTagRE, ($0, $1): string => `{{${$1.trim()}}}`);
 }
 
-export function normalizeConfig(config: Config): NormalizedConfig {
+export function normalizeConfig(config: Config): Config {
   let normalizedConfig: any = config;
   normalizedConfig.excelPath = normalizeExcelPath(config.excelPath);
   normalizedConfig.template = normalizeTemplate(config.template);
-  if (typeof config.targetPath === "string") {
-    normalizedConfig.targetPath = normalizeTargetPath(config.targetPath);
-  }
   return normalizedConfig;
 }

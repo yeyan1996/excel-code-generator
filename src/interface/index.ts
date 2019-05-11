@@ -4,21 +4,7 @@ export interface Config {
   reg: RegExp;
   options: Option[];
   template: string;
-  targetPath: TargetPath | string;
-}
-
-export interface NormalizedConfig {
-  excelPath: string;
-  sheet: number;
-  reg: RegExp;
-  options: Option[];
-  template: string;
-  targetPath: TargetPath;
-}
-
-export interface TargetPath {
-  readPath: string;
-  writePath: string;
+  targetPath: string;
 }
 
 export interface Option {
