@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var cameCase_1 = require("./util/cameCase");
+var camelCase_1 = require("./util/camelCase");
 function generateFromTemplate(initCode, excelObj, config) {
     if (!initCode.match(config.reg))
         throw new Error("没有匹配到相应字段,请查看格式");
@@ -26,7 +26,7 @@ function generateFromTemplate(initCode, excelObj, config) {
                 return "";
             var shouldCamelCase = option.camelCase;
             if (shouldCamelCase)
-                excelObj[$1][i] = cameCase_1.camelCase(excelObj[$1][i]);
+                excelObj[$1][i] = camelCase_1.camelCase(excelObj[$1][i]);
             return "'" + excelObj[$1][i] + "'";
         });
     };

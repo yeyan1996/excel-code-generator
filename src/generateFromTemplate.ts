@@ -1,5 +1,5 @@
 import { Config, ExcelObj } from "./interface/index";
-import { camelCase } from "./util/cameCase";
+import { camelCase } from "./util/camelCase";
 
 export function generateFromTemplate(
   initCode: string,
