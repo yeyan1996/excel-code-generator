@@ -9,7 +9,10 @@ import { ExcelObj, Config } from "./interface";
 import { warn } from "./util/warn";
 
 let normalizedConfig: Config = normalizeConfig(config);
-let generateBuffer: Function = compose(xlsx.parse, fs.readFileSync);
+let generateBuffer: Function = compose(
+  xlsx.parse,
+  fs.readFileSync
+);
 let workSheetsFromBuffer: { name: string; data: any[] }[] = generateBuffer(
   normalizedConfig.excelPath
 );
