@@ -32,9 +32,15 @@
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^4.2.0",
     "eslint-plugin-prettier": "^3.0.1",
+    "husky": "^2.2.0",
     "lodash": "^4.17.11",
     "node-xlsx": "^0.12.1",
     "prettier": "^1.17.0",
     "typescript": "^3.4.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "eslint src --ext .ts --fix"
+    }
   }
 }

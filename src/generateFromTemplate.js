@@ -16,7 +16,9 @@ function generateFromTemplate(initCode, excelObj, config) {
     if (!keyList.length)
         warn_1.warn("没有从EXCEL中找到相应字段");
     //不知道为什么 reduce 的返回值必须和数组元素相同-.-
-    var MAX_LENGTH = Object.keys(excelObj).reduce(function (pre, cur) { return String(Math.max(excelObj[pre].length, excelObj[cur].length)); });
+    var MAX_LENGTH = Object.keys(excelObj).reduce(function (pre, cur) {
+        return String(Math.max(excelObj[pre].length, excelObj[cur].length));
+    });
     var _loop_1 = function (i) {
         str += config.template.replace(defaultTagRE, function ($0, $1) {
             var option = config.options.find(function (option) { return option.as === $1; });

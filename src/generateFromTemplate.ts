@@ -7,7 +7,8 @@ export function generateFromTemplate(
   excelObj: ExcelObj,
   config: Config
 ): string {
-  if (!initCode.match(config.reg)) warn("没有匹配到相应字段,请查看reg是否配置正确");
+  if (!initCode.match(config.reg))
+    warn("没有匹配到相应字段,请查看reg是否配置正确");
 
   let matchRes: null | string[] = initCode.match(config.reg);
   if (!matchRes) warn("正则匹配不到任何文件的字段");
@@ -22,7 +23,8 @@ export function generateFromTemplate(
 
   //不知道为什么 reduce 的返回值必须和数组元素相同-.-
   const MAX_LENGTH: string = Object.keys(excelObj).reduce(
-    (pre, cur): string =>String( Math.max(excelObj[pre].length, excelObj[cur].length))
+    (pre, cur): string =>
+      String(Math.max(excelObj[pre].length, excelObj[cur].length))
   );
 
   for (let i = 0; i < Number(MAX_LENGTH); i++) {

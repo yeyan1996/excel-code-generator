@@ -9,16 +9,13 @@ import { ExcelObj, Config } from "./interface";
 import { warn } from "./util/warn";
 
 let normalizedConfig: Config = normalizeConfig(config);
-let generateBuffer: Function = compose(
-  xlsx.parse,
-  fs.readFileSync
-);
+let generateBuffer: Function = compose(xlsx.parse, fs.readFileSync);
 let workSheetsFromBuffer: { name: string; data: any[] }[] = generateBuffer(
   normalizedConfig.excelPath
 );
 let { data = null } = workSheetsFromBuffer[normalizedConfig.sheet - 1] || {}; //第几张sheet
 
-if(!data) warn("没有找到相应的excel数据")
+if (!data) warn("没有找到相应的excel数据");
 
 function readFile(): string {
   let readData: string = fs.readFileSync(normalizedConfig.targetPath, "utf-8");

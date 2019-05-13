@@ -1,8 +1,8 @@
 import * as fs from "fs";
-import * as path from 'path'
+import * as path from "path";
 import { Config } from "../interface";
 import { warn } from "./warn";
-import {cloneDeep} from 'lodash'
+import { cloneDeep } from "lodash";
 const defaultTagRE = /\{\{((?:.|\r?\n)+?)\}\}/g;
 
 function normalizeExcelPath(excelPath: string): string {
@@ -18,9 +18,10 @@ function normalizeExcelPath(excelPath: string): string {
   return excelPath;
 }
 
-function normalizeTargetPath(targetPath:string):string {
-  if(!path.isAbsolute(targetPath))targetPath = path.resolve(__dirname,'../..',targetPath)
-  return targetPath
+function normalizeTargetPath(targetPath: string): string {
+  if (!path.isAbsolute(targetPath))
+    targetPath = path.resolve(__dirname, "../..", targetPath);
+  return targetPath;
 }
 
 function normalizeTemplate(template: string): string {

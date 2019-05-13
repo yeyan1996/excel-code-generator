@@ -28,7 +28,7 @@ function normalizeExcelPath(excelPath) {
 }
 function normalizeTargetPath(targetPath) {
     if (!path.isAbsolute(targetPath))
-        targetPath = path.resolve(__dirname, '../..', targetPath);
+        targetPath = path.resolve(__dirname, "../..", targetPath);
     return targetPath;
 }
 function normalizeTemplate(template) {
