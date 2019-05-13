@@ -1,4 +1,5 @@
 import { Option, ExcelObj } from "./interface/index";
+import { warn } from "./util/warn";
 
 const VALID_LINE_NUMBER = 2;
 
@@ -11,7 +12,8 @@ export function sliceByColumn(options: Option[], data: any[][]): ExcelObj {
   options.forEach(
     (option): void => {
       if (option.line.length !== VALID_LINE_NUMBER)
-        throw Error("请选择正确的截取列下标");
+        warn("请选择正确的截取列下标");
+
       let arr: any[] = [];
       data.forEach(
         (rowArr): void => {
@@ -24,10 +26,8 @@ export function sliceByColumn(options: Option[], data: any[][]): ExcelObj {
       let posArr: string[] = option.line[1].split("-");
       let startPos: number = Number(posArr[0]) - 1;
       let endPos = Number(posArr[1]);
-      if (!isPositiveNum(startPos) || !isPositiveNum(endPos)) {
-        console.error("line的参数格式不正确");
-        process.exitCode = 1;
-      }
+      if (!isPositiveNum(startPos) || !isPositiveNum(endPos))
+        warn("line的参数格式不正确");
       excelObj[option.as] = arr.slice(startPos, endPos);
     }
   );

@@ -7,7 +7,7 @@
 |Name|Type|Description|
 |:--:|:--:|:----------|
 |**`excelPath`**|`{String}`|`读取 excel 文件的路径`
-|**`targetPath`**|`{String}`|`目标路径`
+|**`targetPath`**|`{String}`|`目标路径，支持相对（config.ts）/绝对路径`
 |**`sheet`**|`{Number}`|`读取第几页的sheet`
 |**`reg`**|`{RegExp}`|`写入文件的具体位置`
 |**`options`**|`{Options[]}`|`配置项`

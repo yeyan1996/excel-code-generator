@@ -14,10 +14,13 @@ var compose_1 = require("./util/compose");
 var normalizeConfig_1 = require("./util/normalizeConfig");
 var sliceByColumn_1 = require("./sliceByColumn");
 var generateFromTemplate_1 = require("./generateFromTemplate");
+var warn_1 = require("./util/warn");
 var normalizedConfig = normalizeConfig_1.normalizeConfig(config_1.config);
 var generateBuffer = compose_1.compose(xlsx.parse, fs.readFileSync);
 var workSheetsFromBuffer = generateBuffer(normalizedConfig.excelPath);
-var data = workSheetsFromBuffer[normalizedConfig.sheet - 1].data; //第几张sheet
+var _a = (workSheetsFromBuffer[normalizedConfig.sheet - 1] || {}).data, data = _a === void 0 ? null : _a; //第几张sheet
+if (!data)
+    warn_1.warn("没有找到相应的excel数据");
 function readFile() {
     var readData = fs.readFileSync(normalizedConfig.targetPath, "utf-8");
     console.log("read success!");

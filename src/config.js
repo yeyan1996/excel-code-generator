@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.config = {
-    excelPath: "C:/Users/zhl/Desktop/excel.xlsm",
-    targetPath: "C:/Users/zhl/Desktop/test.vue",
+    excelPath: "./example/excel.xlsx",
+    targetPath: "./example/test.js",
     sheet: 1,
     reg: /columns([^\[]+\[)+/g,
     options: [
