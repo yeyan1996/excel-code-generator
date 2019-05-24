@@ -1,14 +1,14 @@
-import * as fs from "fs";
-import * as path from "path";
+import { existsSync } from "fs";
+import path from "path";
 import { Config } from "../interface";
 import { warn } from "./warn";
-import { cloneDeep } from "lodash";
+import cloneDeep from "lodash/cloneDeep";
 const defaultTagRE = /\{\{((?:.|\r?\n)+?)\}\}/g;
 
 function normalizeExcelPath(excelPath: string): string {
   const extList: string[] = ["xlsx", "xlxm", "xls"];
   for (let i = 0; i < extList.length; i++) {
-    let exist: boolean = fs.existsSync(excelPath);
+    let exist: boolean = existsSync(excelPath);
     if (exist) break;
     let arr: string[] = excelPath.split(".");
     arr[arr.length - 1] = extList[i];

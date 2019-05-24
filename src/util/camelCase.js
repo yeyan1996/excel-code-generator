@@ -6,3 +6,4 @@ function camelCase(str) {
     });
 }
 exports.camelCase = camelCase;
+//# sourceMappingURL=camelCase.js.map

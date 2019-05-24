@@ -24,3 +24,4 @@ function sliceByColumn(options, data) {
     return excelObj;
 }
 exports.sliceByColumn = sliceByColumn;
+//# sourceMappingURL=sliceByColumn.js.map

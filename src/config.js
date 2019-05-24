@@ -16,5 +16,6 @@ exports.config = {
             line: ["I", "1-5"]
         }
     ],
-    template: "\n        {\n             attrs: {label: {{ name }}, prop: {{ key }}, width: '150'},\n        },\n    "
+    template: "\n        {\n             attrs: {label: {{ name }}, prop: {{ key }}, width: '150',index: {{ _index }}},\n        },\n    "
 };
+//# sourceMappingURL=config.js.map

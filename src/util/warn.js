@@ -5,3 +5,4 @@ function warn(errMessage) {
     process.exit();
 }
 exports.warn = warn;
+//# sourceMappingURL=warn.js.map

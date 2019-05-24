@@ -16,11 +16,15 @@ function generateFromTemplate(initCode, excelObj, config) {
     if (!keyList.length)
         warn_1.warn("没有从EXCEL中找到相应字段");
     //不知道为什么 reduce 的返回值必须和数组元素相同-.-
+    // 这里做了 hack，防止读取列时，某些行缺少信息，导致最终返回行数不准确，所以去最大的行长度
     var MAX_LENGTH = Object.keys(excelObj).reduce(function (pre, cur) {
         return String(Math.max(excelObj[pre].length, excelObj[cur].length));
     });
     var _loop_1 = function (i) {
+        /**替换 template 中的字段**/
         str += config.template.replace(defaultTagRE, function ($0, $1) {
+            if ($1 === "_index")
+                return String(i);
             var option = config.options.find(function (option) { return option.as === $1; });
             if (!option)
                 warn_1.warn("模版的插值表达式和 as 无法关联");
@@ -42,3 +46,4 @@ function generateFromTemplate(initCode, excelObj, config) {
     return (initCode.substring(0, openTagEnd) + str + initCode.substring(openTagEnd));
 }
 exports.generateFromTemplate = generateFromTemplate;
+//# sourceMappingURL=generateFromTemplate.js.map

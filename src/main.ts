@@ -1,6 +1,6 @@
 import { config } from "./config";
-import * as xlsx from "node-xlsx";
-import * as fs from "fs";
+import xlsx from "node-xlsx";
+import fs from "fs";
 import { compose } from "./util/compose";
 import { normalizeConfig } from "./util/normalizeConfig";
 import { sliceByColumn } from "./sliceByColumn";

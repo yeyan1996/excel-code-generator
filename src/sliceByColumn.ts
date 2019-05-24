@@ -1,4 +1,4 @@
-import { Option, ExcelObj } from "./interface/index";
+import { Option, ExcelObj } from "./interface";
 import { warn } from "./util/warn";
 
 const VALID_LINE_NUMBER = 2;

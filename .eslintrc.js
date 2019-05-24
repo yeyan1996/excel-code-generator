@@ -11,6 +11,6 @@ module.exports =  {
     },
     rules:{
         "@typescript-eslint/no-explicit-any":0, //ignore any
-      "@typescript-eslint/no-non-null-assertion":0
+        "@typescript-eslint/no-non-null-assertion":0
     }
 };

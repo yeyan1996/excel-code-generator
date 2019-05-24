@@ -12,3 +12,4 @@ function compose() {
     };
 }
 exports.compose = compose;
+//# sourceMappingURL=compose.js.map

@@ -22,7 +22,7 @@
 |**`camelCase`**|`{Boolean}`|`是否将该字段转为驼峰`
 
 
-在代码模版中，借鉴了 Vue 的插值表达式，将 `{{}}` 中的字段和 options 中的 as 关联，读取到数据后，会根据 as 中的值写入到 `{{}}`中
+在代码模版中，借鉴了 Vue 的插值表达式，将 `{{}}` 中的字段和 options 中的 as 关联，读取到数据后，会根据 as 中的值写入到 `{{}}`中，同时在插值表达式内使用 `_index` 可以获得下标
 
 ## Install
 ```
@@ -31,7 +31,9 @@ git clone git@github.com:yeyan1996/excel-code-generator.git
 
 
 ## Usage
-1. 配置 src/config.ts
-2. 运行 `npm run start`
+
+1. 终端运行 `npm i`
+2. 配置 src/config.ts
+3. 终端运行 `npm run start`
 
 

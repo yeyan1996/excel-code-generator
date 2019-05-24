@@ -18,7 +18,7 @@ export const config: Config = {
   ],
   template: `
         {
-             attrs: {label: {{ name }}, prop: {{ key }}, width: '150'},
+             attrs: {label: {{ name }}, prop: {{ key }}, width: '150',index: {{ _index }}},
         },
     `
 };
