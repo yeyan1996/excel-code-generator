@@ -6,20 +6,20 @@
 ## Api
 |Name|Type|Description|
 |:--:|:--:|:----------|
-|**`excelPath`**|`{String}`|`读取 excel 文件的路径`
-|**`targetPath`**|`{String}`|`目标路径，支持相对（config.ts）/绝对路径`
-|**`sheet`**|`{Number}`|`读取第几页的sheet`
+|**`excelPath`**|`{string}`|`读取 excel 文件的路径`
+|**`targetPath`**|`{string}`|`目标路径，支持相对（config.ts）/绝对路径`
+|**`sheet`**|`{number}`|`读取第几页的sheet`
 |**`reg`**|`{RegExp}`|`写入文件的具体位置`
 |**`options`**|`{Options[]}`|`配置项`
-|**`template`**|`{String}`|`生成的代码模版`
+|**`template`**|`{string}`|`生成的代码模版`
 
 * Options
 
 |Name|Type|Description|
 |:--:|:--:|:----------|
-|**`as`**|`{String}`|`字段名，需要和代码模版中的插值表达式关联`
-|**`line`**|`{String[]}`|`读取 Excel 的位置，第一元素为 Excel 的列（英文索引），第二个元素为第几行到第几行`
-|**`camelCase`**|`{Boolean}`|`是否将该字段转为驼峰`
+|**`as`**|`{string}`|`字段名，需要和代码模版中的插值表达式关联`
+|**`line`**|`{string[]}`|`读取 Excel 的位置，第一元素为 Excel 的列（英文索引），第二个元素为第几行到第几行`
+|**`camelCase`**|`{boolean}`|`是否将该字段转为驼峰`
 
 
 在代码模版中，借鉴了 Vue 的插值表达式，将 `{{}}` 中的字段和 options 中的 as 关联，读取到数据后，会根据 as 中的值写入到 `{{}}`中，同时在插值表达式内使用 `_index` 可以获得下标
