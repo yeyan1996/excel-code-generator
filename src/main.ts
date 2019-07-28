@@ -13,9 +13,10 @@ let generateBuffer: Function = compose(
   xlsx.parse,
   fs.readFileSync
 );
-let workSheetsFromBuffer: { name: string; data: any[] }[] = generateBuffer(
+let workSheetsFromBuffer: { name: string; data: string[][] }[] = generateBuffer(
   normalizedConfig.excelPath
 );
+
 let { data = null } = workSheetsFromBuffer[normalizedConfig.sheet - 1] || {}; //第几张sheet
 
 if (!data) warn("没有找到相应的excel数据");

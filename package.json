@@ -1,6 +1,6 @@
 {
   "name": "excel-code-generator",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "一个能够读取 excel 文件的指定单元格并生成指定代码到文件中的工具",
   "main": "src/main.ts",
   "scripts": {
@@ -32,7 +32,7 @@
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^4.2.0",
     "eslint-plugin-prettier": "^3.0.1",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.15",
     "node-xlsx": "^0.12.1",
     "prettier": "^1.17.0",
     "typescript": "^3.4.5"

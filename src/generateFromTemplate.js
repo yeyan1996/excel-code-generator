@@ -8,14 +8,14 @@ function generateFromTemplate(initCode, excelObj, config) {
     var matchRes = initCode.match(config.reg);
     if (!matchRes)
         warn_1.warn("正则匹配不到任何文件的字段");
-    //非空断言操作符，告知ts走到这里的matchRes一定不是null
+    // 非空断言操作符，告知ts走到这里的matchRes一定不是null
     var matchStr = matchRes[0]; //matchRes匹配到的是标签的前半部分
     var str = "";
-    var defaultTagRE = /\{\{((?:.|\r?\n)+?)\}\}/g;
+    var defaultTagRE = /{{((?:.|\r?\n)+?)}}/g;
     var keyList = Object.keys(excelObj);
     if (!keyList.length)
         warn_1.warn("没有从EXCEL中找到相应字段");
-    //不知道为什么 reduce 的返回值必须和数组元素相同-.-
+    // 不知道为什么 reduce 的返回值必须和数组元素相同-.-
     // 这里做了 hack，防止读取列时，某些行缺少信息，导致最终返回行数不准确，所以去最大的行长度
     var MAX_LENGTH = Object.keys(excelObj).reduce(function (pre, cur) {
         return String(Math.max(excelObj[pre].length, excelObj[cur].length));

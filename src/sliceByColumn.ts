@@ -4,7 +4,7 @@ import { warn } from "./util/warn";
 const VALID_LINE_NUMBER = 2;
 
 const isPositiveNum = (num: number): boolean => num >= 0;
-export function sliceByColumn(options: Option[], data: any[][]): ExcelObj {
+export function sliceByColumn(options: Option[], data: string[][]): ExcelObj {
   let map: string[] = Array.from(new Array(26)).map(
     (item, index): string => String.fromCharCode(index + 97)
   );
@@ -14,7 +14,7 @@ export function sliceByColumn(options: Option[], data: any[][]): ExcelObj {
       if (option.line.length !== VALID_LINE_NUMBER)
         warn("请选择正确的截取列下标");
 
-      let arr: any[] = [];
+      let arr: string[] = [];
       data.forEach(
         (rowArr): void => {
           let index: number = map.findIndex(
