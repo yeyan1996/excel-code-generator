@@ -4,10 +4,10 @@
   "description": "一个能够读取 excel 文件的指定单元格并生成指定代码到文件中的工具",
   "main": "src/main.ts",
   "scripts": {
-    "start": "node src/main.js",
+    "start": "tsc && node dist/main.js",
     "fix": "eslint src --ext .ts --fix",
     "lint": "eslint src --ext .ts ",
-    "debugger": "node --inspect-brk src/main.js"
+    "debugger": "node --inspect-brk --require ts-node/register src/main.ts"
   },
   "repository": {
     "type": "git",
@@ -35,6 +35,7 @@
     "lodash": "^4.17.15",
     "node-xlsx": "^0.12.1",
     "prettier": "^1.17.0",
+    "ts-node": "^8.3.0",
     "typescript": "^3.4.5"
   }
 }

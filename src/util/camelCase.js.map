@@ -1,1 +1,0 @@
-{"version":3,"file":"camelCase.js","sourceRoot":"","sources":["camelCase.ts"],"names":[],"mappings":";;AAAA,SAAgB,SAAS,CAAC,GAAW;IACnC,OAAO,GAAG,CAAC,OAAO,CAAC,QAAQ,EAAE,UAAS,KAAa;QACjD,OAAO,KAAK,CAAC,KAAK,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,WAAW,EAAE,CAAC;IACzC,CAAC,CAAC,CAAC;AACL,CAAC;AAJD,8BAIC"}
