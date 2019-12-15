@@ -2,9 +2,9 @@ import { Config } from "./interface";
 
 export const config: Config = {
   excelPath: "./example/excel.xlsx",
-  targetPath: "./example/test.js",
+  targetPath: "./example/index.vue",
   sheet: 1,
-  reg: /columns([^\[]+\[)+/g,
+  reg: /table>/g,
   options: [
     {
       as: "name",
@@ -17,13 +17,10 @@ export const config: Config = {
     }
   ],
   template: `
-  {
-    attrs: {
-      label: {{ name }}, 
-      prop: {{ key }}, 
-      width: "150",
-      index: {{ _index }}
-    }
-  },
+     <el-table-column
+        prop={{key}}
+        label={{name}}
+        width="180">
+      </el-table-column>
     `
 };

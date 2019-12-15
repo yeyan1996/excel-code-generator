@@ -2,9 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.config = {
     excelPath: "./example/excel.xlsx",
-    targetPath: "./example/test.js",
+    targetPath: "./example/index.vue",
     sheet: 1,
-    reg: /columns([^\[]+\[)+/g,
+    reg: /table>/g,
     options: [
         {
             as: "name",
@@ -16,5 +16,5 @@ exports.config = {
             line: ["I", "1-5"]
         }
     ],
-    template: "\n  {\n    attrs: {\n      label: {{ name }}, \n      prop: {{ key }}, \n      width: '150',\n      index: {{ _index }}\n    }\n  },\n    "
+    template: "\n     <el-table-column\n        prop={{key}}\n        label={{name}}\n        width=\"180\">\n      </el-table-column>\n    "
 };
