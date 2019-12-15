@@ -13,6 +13,4 @@ export interface Option {
   camelCase?: boolean;
 }
 
-export interface ExcelObj {
-  [prop: string]: string[];
-}
+export type ExcelObj = { [prop in Option["as"]]: string[] };

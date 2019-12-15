@@ -1,28 +1,30 @@
 import { config } from "./config";
-import xlsx from "node-xlsx";
-import fs from "fs";
-import { compose } from "./util/compose";
+import { pipe } from "lodash/fp";
 import { normalizeConfig } from "./util/normalizeConfig";
 import { sliceByColumn } from "./sliceByColumn";
-import { generateFromTemplate } from "./generateFromTemplate";
-import { ExcelObj, Config } from "./interface";
+import { generateCodeByTemplate } from "./generateCodeByTemplate";
+import { ExcelObj } from "./interface";
 import { warn } from "./util/warn";
+import xlsx from "node-xlsx";
+import fs from "fs";
 
-let normalizedConfig: Config = normalizeConfig(config);
-let generateBuffer: Function = compose(
-  xlsx.parse,
-  fs.readFileSync
+let normalizedConfig = normalizeConfig(config);
+let generateBuffer = pipe(
+  fs.readFileSync,
+  xlsx.parse
 );
 let workSheetsFromBuffer: { name: string; data: string[][] }[] = generateBuffer(
   normalizedConfig.excelPath
 );
 
-let { data = null } = workSheetsFromBuffer[normalizedConfig.sheet - 1] || {}; //第几张sheet
+let { data = null } = workSheetsFromBuffer[normalizedConfig.sheet - 1] || {}; // 第 x 张sheet 中的数据
 
-if (!data) warn("没有找到相应的excel数据");
+if (!data) {
+  warn("没有找到相应的excel数据");
+}
 
 function readFile(): string {
-  let readData: string = fs.readFileSync(normalizedConfig.targetPath, "utf-8");
+  const readData = fs.readFileSync(normalizedConfig.targetPath, "utf-8");
   console.log("read success!");
   return readData;
 }
@@ -32,11 +34,15 @@ function writeFile(writeData: string): void {
   console.log("write success!");
 }
 
-let colObj: ExcelObj = sliceByColumn(normalizedConfig.options, data!);
+const colObj: ExcelObj = sliceByColumn(normalizedConfig.options, data!);
 
 function init(): void {
-  let readData: string = readFile();
-  let replacedCode = generateFromTemplate(readData, colObj, normalizedConfig);
+  const readData: string = readFile();
+  const replacedCode: string = generateCodeByTemplate(
+    readData,
+    colObj,
+    normalizedConfig
+  );
   writeFile(replacedCode);
 }
 

@@ -5,8 +5,7 @@
   "main": "src/main.ts",
   "scripts": {
     "start": "tsc && node dist/main.js",
-    "fix": "eslint src --ext .ts --fix",
-    "lint": "eslint src --ext .ts ",
+    "lint": "eslint src --ext .ts --fix",
     "debugger": "node --inspect-brk --require ts-node/register src/main.ts"
   },
   "repository": {

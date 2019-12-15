@@ -1,16 +1,18 @@
 import { existsSync } from "fs";
-import path from "path";
-import { Config } from "../interface";
 import { warn } from "./warn";
+import { Config } from "../interface";
+import path from "path";
 import cloneDeep from "lodash/cloneDeep";
-const defaultTagRE = /\{\{((?:.|\r?\n)+?)\}\}/g;
 
+const interpolationExpressionRE = /{{((?:.|\r?\n)+?)}}/g; // 匹配插值表达式
+const extList: string[] = ["xlsx", "xlxm", "xls"];
+
+// 尝试匹配可能的扩展名
 function normalizeExcelPath(excelPath: string): string {
-  const extList: string[] = ["xlsx", "xlxm", "xls"];
   for (let i = 0; i < extList.length; i++) {
     let exist: boolean = existsSync(excelPath);
     if (exist) break;
-    let arr: string[] = excelPath.split(".");
+    let arr = excelPath.split(".");
     arr[arr.length - 1] = extList[i];
     excelPath = arr.join(".");
     if (i === extList.length) warn("找不到对应文件");
@@ -25,7 +27,10 @@ function normalizeTargetPath(targetPath: string): string {
 }
 
 function normalizeTemplate(template: string): string {
-  return template.replace(defaultTagRE, ($0, $1): string => `{{${$1.trim()}}}`);
+  return template.replace(
+    interpolationExpressionRE,
+    (_, templateVariable): string => `{{${templateVariable.trim()}}}`
+  );
 }
 
 export function normalizeConfig(config: Config): Config {

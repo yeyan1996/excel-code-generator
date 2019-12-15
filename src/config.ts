@@ -17,8 +17,13 @@ export const config: Config = {
     }
   ],
   template: `
-        {
-             attrs: {label: {{ name }}, prop: {{ key }}, width: '150',index: {{ _index }}},
-        },
+  {
+    attrs: {
+      label: {{ name }}, 
+      prop: {{ key }}, 
+      width: "150",
+      index: {{ _index }}
+    }
+  },
     `
 };
