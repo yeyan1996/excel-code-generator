@@ -32,8 +32,8 @@
 
 ```vue
 <el-table-column
-  prop="{{key}}"
-  label="{{name}}"
+  prop={{key}}
+  label={{name}}
   width="180"
   align="center"
 >
