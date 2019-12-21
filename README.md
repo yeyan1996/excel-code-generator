@@ -28,7 +28,7 @@
 在代码模版中，借鉴了 Vue 的插值表达式，将 `{{}}` 中的字段和 options 中的 as 关联，读取到数据后，会根据 as 中的值写入到 `{{}}`中
 同时在插值表达式内使用 `_index` 可以获得下标
 
-在某些情况下就能为你剩下很多重复的复制粘贴时间，例如
+在某些情况下就能为你剩下很多重复的复制粘贴时间，例如可以做这样的事
 
 ```vue
 <el-table-column
@@ -40,6 +40,41 @@
 </el-table-column>
 ```
 
+
+```vue
+<el-table-column
+    prop="I1"
+    label="H1"
+    width="180">
+  </el-table-column>
+
+ <el-table-column
+    prop="I2"
+    label="H2"
+    width="180">
+  </el-table-column>
+
+ <el-table-column
+    prop="I3"
+    label="H3"
+    width="180">
+  </el-table-column>
+
+ <el-table-column
+    prop="I4"
+    label="H4"
+    width="180">
+  </el-table-column>
+
+ <el-table-column
+    prop="I5"
+    label="H5"
+    width="180">
+  </el-table-column>
+    
+```
+
+其中的字段都是在 excel 中提取的，而你需要做的只是配置设置提取 excel 的位置
 
 ## Install
 
