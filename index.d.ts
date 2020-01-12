@@ -6,6 +6,9 @@ declare function gen(config: {
   reg?: RegExp;
 }): void;
 
-declare function excel(strs: TemplateStringsArray, ...options: Option[]): void;
+declare function excel(
+  strs: TemplateStringsArray,
+  ...options: Option[]
+): string;
 
 export { excel, gen };
