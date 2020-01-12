@@ -1,10 +1,12 @@
 {
   "name": "excel-code-generator",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "description": "一个能够读取 excel 文件的指定单元格并生成指定代码到文件中的工具",
   "main": "src/main.ts",
   "scripts": {
-    "start": "tsc && node dist/main.js",
+    "release": "sh script/release.sh",
+    "example": "node example/index.js",
+    "build": "rm -rf ./dist && tsc",
     "lint": "eslint src --ext .ts --fix",
     "debugger": "node --inspect-brk --require ts-node/register src/main.ts"
   },
@@ -23,18 +25,26 @@
   },
   "homepage": "https://github.com/yeyan1996/excel-code-generator#readme",
   "devDependencies": {
+    "@types/chalk": "^2.2.0",
     "@types/lodash": "^4.14.126",
     "@types/node": "^12.0.2",
     "@types/node-xlsx": "^0.12.1",
+    "@types/prettier": "^1.19.0",
+    "@types/shelljs": "^0.8.6",
     "@typescript-eslint/eslint-plugin": "^1.8.0",
     "@typescript-eslint/parser": "^1.8.0",
+    "chalk": "^3.0.0",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^4.2.0",
     "eslint-plugin-prettier": "^3.0.1",
-    "lodash": "^4.17.15",
-    "node-xlsx": "^0.12.1",
-    "prettier": "^1.17.0",
+    "prettier": "^1.19.1",
+    "shelljs": "^0.8.3",
     "ts-node": "^8.3.0",
-    "typescript": "^3.4.5"
+    "typescript": "^3.7.4"
+  },
+  "dependencies": {
+    "camelcase": "^5.3.1",
+    "lodash": "^4.17.15",
+    "node-xlsx": "^0.12.1"
   }
 }

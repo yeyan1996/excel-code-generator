@@ -1,16 +1,12 @@
 export interface Config {
-  excelPath: string;
-  sheet: number;
-  reg: RegExp;
-  options: Option[];
+  reg?: RegExp;
   template: string;
-  targetPath: string;
+  target?: string;
 }
 
 export interface Option {
-  as: string;
-  line: [string, string];
-  camelCase?: boolean;
+  line: [string, number, number];
+  source: string;
+  sheet?: number;
+  camelcase?: boolean;
 }
-
-export type ExcelObj = { [prop in Option["as"]]: string[] };

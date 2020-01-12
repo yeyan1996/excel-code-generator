@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var camelCase_1 = require("./util/camelCase");
+var camelcase_1 = require("./util/camelcase");
 var warn_1 = require("./util/warn");
 function generateFromTemplate(initCode, excelObj, config) {
     if (!initCode.match(config.reg))
@@ -30,9 +30,9 @@ function generateFromTemplate(initCode, excelObj, config) {
                 warn_1.warn("模版的插值表达式和 as 无法关联");
             if (excelObj[$1][i] === undefined)
                 return "";
-            var shouldCamelCase = option.camelCase;
+            var shouldCamelCase = option.camelcase;
             if (shouldCamelCase)
-                excelObj[$1][i] = camelCase_1.camelCase(excelObj[$1][i]);
+                excelObj[$1][i] = camelcase_1.camelcase(excelObj[$1][i]);
             return "'" + excelObj[$1][i] + "'";
         });
     };

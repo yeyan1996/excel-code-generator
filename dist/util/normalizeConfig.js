@@ -23,10 +23,10 @@ function normalizeExcelPath(excelPath) {
     }
     return excelPath;
 }
-function normalizeTargetPath(targetPath) {
-    if (!path_1.default.isAbsolute(targetPath))
-        targetPath = path_1.default.resolve(__dirname, "../..", targetPath);
-    return targetPath;
+function normalizeTargetPath(target) {
+    if (!path_1.default.isAbsolute(target))
+        target = path_1.default.resolve(__dirname, "../..", target);
+    return target;
 }
 function normalizeTemplate(template) {
     return template.replace(interpolationExpressionRE, function (_, templateVariable) { return "{{" + templateVariable.trim() + "}}"; });
@@ -34,7 +34,7 @@ function normalizeTemplate(template) {
 function normalizeConfig(config) {
     var normalizedConfig = cloneDeep_1.default(config); //深拷贝防止原始的引用类型被修改
     normalizedConfig.excelPath = normalizeExcelPath(config.excelPath);
-    normalizedConfig.targetPath = normalizeTargetPath(config.targetPath);
+    normalizedConfig.target = normalizeTargetPath(config.target);
     normalizedConfig.template = normalizeTemplate(config.template);
     return normalizedConfig;
 }

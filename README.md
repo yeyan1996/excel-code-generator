@@ -4,86 +4,85 @@
 
 在后台管理系统中，往往需要输入很多字段名，手动输入会造成很多隐藏的错误
 
-`如果数据字段的文档是用 excel 写的话`，那么使用这款工具，用户只需配置生成的代码的模版以及读取 excel 的位置，即可自动生成代码片段并写入指定文件中，提高工作效率，减少误差
+`如果数据字段的文档是用 excel 写的话`，使用这款工具，用户只需配置生成的代码的模版，即可自动生成代码片段并写入指定文件中，提高工作效率，减少误差
+
+## 使用
+
+```
+npm i excel-code-generator -D
+```
+
+```javascript
+const { gen, excel } = require("excel-code-generator");
+
+gen({
+  target: "./example/index.vue",
+  reg: /table>/g,
+  template: excel`
+     <el-table-column
+        prop="${{
+          source: "./example/excel.xlsx",
+          line: ["H", 1, 5]
+        }}"
+        label="${{
+          source: "./example/excel.xlsx",
+          line: ["I", 1, 5]
+        }}"
+        width="180">
+      </el-table-column>
+    `
+});
+```
 
 ## Api
 
-|       Name       |     Type      | Description                                |
-| :--------------: | :-----------: | :----------------------------------------- |
-| **`excelPath`**  |  `{string}`   | `读取 excel 文件的路径`                    |
-| **`targetPath`** |  `{string}`   | `目标路径，支持相对（config.ts）/绝对路径` |
-|   **`sheet`**    |  `{number}`   | `读取第几页的sheet`                        |
-|    **`reg`**     |  `{RegExp}`   | `写入文件的具体位置`                       |
-|  **`options`**   | `{Options[]}` | `配置项`                                   |
-|  **`template`**  |  `{string}`   | `生成的代码模版`                           |
+|      Name      |    类型    | Description                                | 是否必填 |
+| :------------: | :--------: | :----------------------------------------- | -------- |
+| **`template`** | `{string}` | `生成的代码模版`                           | 是       |
+|  **`target`**  | `{string}` | `写入文件路径，不输入则直接返回模版`       | 否       |
+|   **`reg`**    | `{RegExp}` | `写入文件的具体位置，不输入则直接返回模版` | 否       |
 
-- Options
+其中 excel-code-generator 为 template 提供了特殊的标签模版 `excel`，标签模版提供了一些自定义语法帮助更好的填入 excel 的值
 
-|      Name       |     Type     | Description                                                                        |
-| :-------------: | :----------: | :--------------------------------------------------------------------------------- |
-|    **`as`**     |  `{string}`  | `字段名，需要和代码模版中的插值表达式关联`                                         |
-|   **`line`**    | `{string[]}` | `读取 Excel 的位置，第一元素为 Excel 的列（英文索引），第二个元素为第几行到第几行` |
-| **`camelCase`** | `{boolean}`  | `是否将该字段转为驼峰`                                                             |
+```
+excel`
+     <el-table-column
+        prop="${{
+          source: "./example/excel.xlsx",
+          line: ["H", 1, 5]
+        }}"
+        label="${{
+          source: "./example/excel.xlsx",
+          line: ["I", 1, 5]
+        }}"
+        width="180">
+      </el-table-column>
+    `
+```
 
-在代码模版中，借鉴了 Vue 的插值表达式，将 `{{}}` 中的字段和 options 中的 as 关联，读取到数据后，会根据 as 中的值写入到 `{{}}`中
-同时在插值表达式内使用 `_index` 可以获得下标
+在 `${}` 中传入一个对象，类型如下，最后生成以下模版
 
-在某些情况下就能为你剩下很多重复的复制粘贴时间，例如可以做这样的事
+Option
+
+|      参数       |     Type     | Description                                                                          | 是否必填 |
+| :-------------: | :----------: | :----------------------------------------------------------------------------------- | -------- |
+|  **`source`**   |  `{string}`  | `读取的 excel 路径`                                                                  | 是       |
+|   **`line`**    | `{string[]}` | `读取 Excel 的位置，第一个元素为 Excel 的列（英文索引），第二，三个元素为列的起止行` | 是       |
+| **`camelcase`** | `{boolean}`  | `是否将该字段转为驼峰，默认 true`                                                    | 否       |
 
 ```vue
-<el-table-column
-  prop={{key}}
-  label={{name}}
-  width="180"
-  align="center"
->
-</el-table-column>
+<el-table-column prop="I1" label="H1" width="180">
+  </el-table-column>
+
+<el-table-column prop="I2" label="H2" width="180">
+  </el-table-column>
+
+<el-table-column prop="I3" label="H3" width="180">
+  </el-table-column>
+
+<el-table-column prop="I4" label="H4" width="180">
+  </el-table-column>
+
+<el-table-column prop="I5" label="H5" width="180">
+  </el-table-column>
 ```
-
-
-```vue
-<el-table-column
-    prop="I1"
-    label="H1"
-    width="180">
-  </el-table-column>
-
- <el-table-column
-    prop="I2"
-    label="H2"
-    width="180">
-  </el-table-column>
-
- <el-table-column
-    prop="I3"
-    label="H3"
-    width="180">
-  </el-table-column>
-
- <el-table-column
-    prop="I4"
-    label="H4"
-    width="180">
-  </el-table-column>
-
- <el-table-column
-    prop="I5"
-    label="H5"
-    width="180">
-  </el-table-column>
-    
-```
-
-其中的字段都是在 excel 中提取的，而你需要做的只是配置设置提取 excel 的位置
-
-## Install
-
-```
-git clone git@github.com:yeyan1996/excel-code-generator.git
-```
-
-## Usage
-
-1. 终端运行 `npm i` 安装依赖
-2. 配置 src/config.ts
-3. 终端运行 `npm run start`
