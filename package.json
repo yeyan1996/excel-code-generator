@@ -2,7 +2,8 @@
   "name": "excel-code-generator",
   "version": "2.0.1",
   "description": "一个能够读取 excel 文件的指定单元格并生成指定代码到文件中的工具",
-  "main": "src/main.ts",
+  "main": "dist/main.js",
+  "types": "./index.d.ts",
   "scripts": {
     "release": "sh script/release.sh",
     "example": "node example/index.js",
