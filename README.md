@@ -1,13 +1,14 @@
 # excel-code-generator
 
-> 一个能够读取 excel 文件的指定单元格并生成指定代码到文件中的工具
+English | [中文](./README-zh_CN.md)
 
-在后台管理系统中，往往需要输入很多字段名，手动输入会造成很多隐藏的错误
+A tool that can extract specified data from xlsx and generate code into any file
 
-`如果数据字段的文档是用 excel 写的话`，使用这款工具，用户只需配置生成的代码的模版，即可自动生成代码片段并写入指定文件中，提高工作效率，减少误差
+In the dashboard, we often need to enter a lot of field names, manual input will cause a lot of hidden errors
 
-## 使用
+If the data field document is written in Excel, using this tool, users only need to configure the generated code template, you can automatically generate code snippets and write to the specified file, improve work efficiency and reduce errors
 
+## Usage
 ```
 npm i excel-code-generator -D
 ```
@@ -36,15 +37,16 @@ gen({
 
 ## Api
 
-|      Name      |    类型    | Description          | 是否必填 |
-| :------------: | :--------: | :------------------- | -------- |
-| **`template`** | `{string}` | `生成的代码模版`     | 是       |
-|  **`target`**  | `{string}` | `写入文件路径`       | 否       |
-|   **`reg`**    | `{RegExp}` | `写入文件的具体位置` | 否       |
+|      Name      |    Type    | Description                                                                | Required |
+|:--------------:|:----------:|:---------------------------------------------------------------------------|----------|
+| **`template`** | `{string}` | `Generated code template`                                                  | true     |
+|  **`target`**  | `{string}` | `Path of the Excel`                                                                         | false    |
+|   **`reg`**    | `{RegExp}` | `Use this RegExp to match the specific location of the file to be written` | false    |
 
-其中 excel-code-generator 为 template 提供了特殊的标签模版 `excel`，标签模版提供了一些自定义语法帮助更好的填入 excel 的值
+excel-code-generator provides a special tag "excel" for template, and the tag template provides some custom syntax to help better fill in Excel values
 
-```
+
+```javascript
 excel`
      <el-table-column
         prop="${{
@@ -57,18 +59,18 @@ excel`
         }}"
         width="180">
       </el-table-column>
-    `
+`
 ```
 
-在 `${}` 中传入一个对象，类型如下，最后生成以下模版
+Pass an object in `${}` of the following type, and finally generate the following template
 
 Option
 
-|      参数       |     Type     | Description                                                                          | 是否必填 |
-| :-------------: | :----------: | :----------------------------------------------------------------------------------- | -------- |
-|  **`source`**   |  `{string}`  | `读取的 excel 路径`                                                                  | 是       |
-|   **`line`**    | `{string[]}` | `读取 excel 的位置，第一个元素为 excel 的列（英文索引），第二，三个元素为列的起止行` | 是       |
-| **`camelcase`** | `{boolean}`  | `是否将该字段转为驼峰，默认 true`                                                    | 否       |
+|    Paramters    |     Type     | Description                                                                                                                                               | Required |
+|:---------------:| :----------: |:----------------------------------------------------------------------------------------------------------------------------------------------------------|----------|
+|  **`source`**   |  `{string}`  | `Path of the Excel`                                                                                                                                       | true     |
+|   **`line`**    | `{string[]}` | `Read excel's position, the first element is excel's column (English index), and the second and third elements are the column's starting and ending rows` | true     |
+| **`camelcase`** | `{boolean}`  | `Whether to convert this field to a hump. The default is true`                                                                                            | false    |
 
 ```vue
 <el-table-column prop="I1" label="H1" width="180">
